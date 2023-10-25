@@ -17,12 +17,6 @@ const Footer = () => {
 
     return (
         <div className='hfroute-footer'>
-            <span
-                key='footer-copyright'
-                className='footer-copyright'
-            >
-                {`© ${new Date().getFullYear()} Mattermost Inc.`}
-            </span>
             {AboutLink && (
                 <ExternalLink
                     key='footer-link-about'
@@ -41,16 +35,6 @@ const Footer = () => {
                     location='footer'
                 >
                     {formatMessage({id: 'web.footer.privacy', defaultMessage: 'Privacy Policy'})}
-                </ExternalLink>
-            )}
-            {TermsOfServiceLink && (
-                <ExternalLink
-                    key='footer-link-terms'
-                    className='footer-link'
-                    href={TermsOfServiceLink}
-                    location='footer'
-                >
-                    {formatMessage({id: 'web.footer.terms', defaultMessage: 'Terms'})}
                 </ExternalLink>
             )}
             {HelpLink && (
