@@ -383,7 +383,7 @@ const Signup = ({onCustomizeHeader}: SignupProps) => {
             <p className='signup-body-message-subtitle'>
                 {formatMessage({
                     id: 'signup_user_completed.subtitle',
-                    defaultMessage: 'Create your Mattermost account to start collaborating with your team',
+                    defaultMessage: 'Create your Private messenger account to start collaborating with your team',
                 })}
             </p>
         );
@@ -599,7 +599,7 @@ const Signup = ({onCustomizeHeader}: SignupProps) => {
                     onChange={() => setSubscribeToSecurityNewsletter(!subscribeToSecurityNewsletter)}
                     text={
                         formatMessage(
-                            {id: 'newsletter_optin.checkmark.text', defaultMessage: '<span>I would like to receive Mattermost security updates via newsletter.</span> By subscribing, I consent to receive emails from Mattermost with product updates, promotions, and company news. I have read the <a>Privacy Policy</a> and understand that I can <aa>unsubscribe</aa> at any time'},
+                            {id: 'newsletter_optin.checkmark.text', defaultMessage: '<span>I would like to receive Private messenger security updates via newsletter.</span> By subscribing, I consent to receive emails from Private messenger with product updates, promotions, and company news. I have read the <a>Privacy Policy</a> and understand that I can <aa>unsubscribe</aa> at any time'},
                             {
                                 a: (chunks: React.ReactNode | React.ReactNodeArray) => (
                                     <ExternalLink
@@ -628,25 +628,6 @@ const Signup = ({onCustomizeHeader}: SignupProps) => {
         }
         return (
             <div className='newsletter'>
-                <span className='interested'>
-                    {formatMessage({id: 'newsletter_optin.title', defaultMessage: 'Interested in receiving Mattermost security, product, promotions, and company updates updates via newsletter?'})}
-                </span>
-                <span className='link'>
-                    {formatMessage(
-                        {id: 'newsletter_optin.desc', defaultMessage: 'Sign up at <a>{link}</a>.'},
-                        {
-                            link: HostedCustomerLinks.SECURITY_UPDATES,
-                            a: (chunks: React.ReactNode | React.ReactNodeArray) => (
-                                <ExternalLink
-                                    location='signup'
-                                    href={HostedCustomerLinks.SECURITY_UPDATES}
-                                >
-                                    {chunks}
-                                </ExternalLink>
-                            ),
-                        },
-                    )}
-                </span>
             </div>
         );
     };
@@ -847,15 +828,6 @@ const Signup = ({onCustomizeHeader}: SignupProps) => {
                             )}
                             {enableSignUpWithEmail && !serverError && (
                                 <p className='signup-body-card-agreement'>
-                                    <FormattedMarkdownMessage
-                                        id='create_team.agreement'
-                                        defaultMessage='By proceeding to create your account and use {siteName}, you agree to our [Terms of Use]({TermsOfServiceLink}) and [Privacy Policy]({PrivacyPolicyLink}). If you do not agree, you cannot use {siteName}.'
-                                        values={{
-                                            siteName: SiteName,
-                                            TermsOfServiceLink: `!${TermsOfServiceLink}`,
-                                            PrivacyPolicyLink: `!${PrivacyPolicyLink}`,
-                                        }}
-                                    />
                                 </p>
                             )}
                         </div>
