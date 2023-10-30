@@ -231,66 +231,6 @@ export default class Root extends React.PureComponent<Props, State> {
         const config = getConfig(store.getState());
         const telemetryId = this.props.telemetryId;
 
-        const rudderUrl = 'https://pdat.matterlytics.com';
-        let rudderKey = '';
-        switch (config.ServiceEnvironment) {
-        case ServiceEnvironment.PRODUCTION:
-            rudderKey = '1aoejPqhgONMI720CsBSRWzzRQ9';
-            break;
-        case ServiceEnvironment.TEST:
-            rudderKey = '1aoeoCDeh7OCHcbW2kseWlwUFyq';
-            break;
-        case ServiceEnvironment.DEV:
-            break;
-        }
-
-        if (rudderKey !== '' && this.props.telemetryEnabled) {
-            const rudderCfg: {setCookieDomain?: string} = {};
-            const siteURL = getConfig(store.getState()).SiteURL;
-            if (siteURL !== '') {
-                try {
-                    rudderCfg.setCookieDomain = new URL(siteURL || '').hostname;
-                    // eslint-disable-next-line no-empty
-                } catch (_) {}
-            }
-            rudderAnalytics.load(rudderKey, rudderUrl || '', rudderCfg);
-
-            rudderAnalytics.identify(telemetryId, {}, {
-                context: {
-                    ip: '0.0.0.0',
-                },
-                page: {
-                    path: '',
-                    referrer: '',
-                    search: '',
-                    title: '',
-                    url: '',
-                },
-                anonymousId: '00000000000000000000000000',
-            });
-
-            rudderAnalytics.page('ApplicationLoaded', {
-                path: '',
-                referrer: '',
-                search: ('' as any),
-                title: '',
-                url: '',
-            } as any,
-            {
-                context: {
-                    ip: '0.0.0.0',
-                },
-                anonymousId: '00000000000000000000000000',
-            });
-
-            const utmParams = this.captureUTMParams();
-            rudderAnalytics.ready(() => {
-                Client4.setTelemetryHandler(new RudderTelemetryHandler());
-                if (utmParams) {
-                    trackEvent('utm_params', 'utm_params', utmParams);
-                }
-            });
-        }
 
         if (this.props.location.pathname === '/' && this.props.noAccounts) {
             this.props.history.push('/signup_user_complete');
